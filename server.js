@@ -32,6 +32,22 @@ var csrf = require('csurf');
  **       Check out the csrf module!          **
  ***********************************************/
 
+// Enable HTPP Eencoding.
+swig.init({
+    root: __dirname + "/app/views",
+    autoescape: true //default value
+});
+  
+
+// Enable session management.
+app.use(express.session({
+    secret: "a$bi*aAS1234^,",
+    cookie: {
+        httpOnly: true,
+        secure: true
+    }
+}));
+
 MongoClient.connect(config.db, function(err, db) {
     if (err) {
         console.log("Error: DB: connect");

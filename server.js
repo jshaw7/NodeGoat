@@ -32,21 +32,9 @@ var csrf = require('csurf');
  **       Check out the csrf module!          **
  ***********************************************/
 
-// Enable HTPP Eencoding.
-swig.init({
-    root: __dirname + "/app/views",
-    autoescape: true //default value
-});
-  
 
-// Enable session management.
-app.use(express.session({
-    secret: "a$bi*aAS1234^,",
-    cookie: {
-        httpOnly: true,
-        secure: true
-    }
-}));
+
+
 
 MongoClient.connect(config.db, function(err, db) {
     if (err) {
@@ -56,6 +44,15 @@ MongoClient.connect(config.db, function(err, db) {
         process.exit(1);
     }
     console.log("Connected to the database: " + config.db);
+
+
+    app.use(session({
+        secret: "abiAS1234bcd",
+        cookie: {
+            httpOnly: true,
+            secure: true
+        }
+    }));
 
     // Adding/ remove HTTP Headers for security
     app.use(favicon(__dirname + "/app/assets/favicon.ico"));
@@ -91,8 +88,8 @@ MongoClient.connect(config.db, function(err, db) {
 
     // Template system setup
     swig.setDefaults({
-        // Autoescape disabled
-        autoescape: false
+        root: __dirname + "/app/views",
+        autoescape: true
     });
 
     // Insecure HTTP connection

@@ -40,6 +40,8 @@ function SessionHandler(db) {
         var userName = req.body.userName;
         var password = req.body.password;
 
+        console.log('hello!' + res.locals);
+
         userDAO.validateLogin(userName, password, function(err, user) {
             var errorMessage = "Invalid username and/or password";
             var invalidUserNameErrorMessage = "Invalid username";

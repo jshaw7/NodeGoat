@@ -125,7 +125,6 @@ function UserDAO(db) {
                 if (err) {
                     return callback(err, null);
                 }
-                console.log(data);
                 callback(null, data.value.seq);
             }
         );

@@ -11,8 +11,7 @@ var http = require("http");
 var app = express(); // Web framework to handle routing requests
 var routes = require("./app/routes");
 var config = require("./config/config"); // Application config properties
-var cookieParser = require('cookie-parser');
-var csrf = require('csurf');
+
 
 /*************** SECURITY ISSUES ***************
  ** There are several security issues with    **
@@ -32,10 +31,6 @@ var csrf = require('csurf');
  **       Check out the csrf module!          **
  ***********************************************/
 
-
-
-
-
 MongoClient.connect(config.db, function(err, db) {
     if (err) {
         console.log("Error: DB: connect");
@@ -44,7 +39,6 @@ MongoClient.connect(config.db, function(err, db) {
         process.exit(1);
     }
     console.log("Connected to the database: " + config.db);
-
 
     app.use(session({
         secret: "abiAS1234bcd",
@@ -70,12 +64,6 @@ MongoClient.connect(config.db, function(err, db) {
         saveUninitialized: true,
         resave: true
     }));
-
-    // csrf defense
-    app.use(function(req, res, next) { 
-        res.locals.csrftoken = req.csrfToken(); 
-        next(); 
-    }); 
 
     // Register templating engine
     app.engine(".html", consolidate.swig);

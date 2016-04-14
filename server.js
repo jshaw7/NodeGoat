@@ -72,8 +72,6 @@ MongoClient.connect(config.db, function(err, db) {
     }));
 
     // csrf defense
-    app.use(express.csrf());
-
     app.use(function(req, res, next) { 
         res.locals.csrftoken = req.csrfToken(); 
         next(); 

@@ -81,7 +81,7 @@
                                 <span class="fa fa-bullseye"></span>Retire<b>Easy</b>
                             </span>
                             <br/>
-                            <span style="font-size: medium">{{csrftoken}} Retirement Savings Management</span>
+                            <span style="font-size: medium">Awesome Retirement Savings Management</span>
                             <br/>
                             <br/>
                         </div>
@@ -98,6 +98,7 @@
 
 
                             <form method="post" role="form" method="post" id="loginform">
+                                <input type="hidden" name="_csrf" value="{{ csrftoken }}">
                                 <div class="form-group">
                                     <label for="userName">Username</label>
                                     <input type="text" class="form-control" id="userName" name="userName" value="{{userName}}" placeholder="Enter User Name">

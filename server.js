@@ -71,12 +71,13 @@ MongoClient.connect(config.db, function(err, db) {
         resave: true
     }));
 
+    // csrf defense
     app.use(csrf());
 
-    app.use(function(req, res, next) {
-        res.locals.csrftoken = req.csrfToken();
-        next();
-    });
+    app.use(function(req, res, next) { 
+        res.locals.csrftoken = req.csrfToken(); 
+        next(); 
+    }); 
 
     // Register templating engine
     app.engine(".html", consolidate.swig);
